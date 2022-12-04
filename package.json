@@ -1,0 +1,15 @@
+{
+  "name": "lambda-layers",
+  "version": "1.0.0",
+  "description": "lambda-layers",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1187.0"
+  },
+  "scripts": {
+    "update": "npm cache clean --force && rm -rf ./node_modules && rm -rf ./package-lock.json && npm install --save",
+    "deploy:dev": "zsh deploy.sh dev",
+    "deploy:stg": "zsh deploy.sh stg",
+    "deploy:prd": "zsh deploy.sh prd"
+  }
+}

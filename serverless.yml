@@ -1,0 +1,31 @@
+# 서비스명
+service: lambda-layers
+
+# 제공자
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: ${opt:stage}
+  region: ap-northeast-2
+  deploymentBucket:
+    name: serverless-nodejs-deploy-source
+    serverSideEncryption: AES256
+  deploymentPrefix: serverless
+
+# layers 세팅
+layers:
+  modules:
+    path: ./modules
+    name: node-modules-${self:provider.stage} # optional, Deployed Lambda layer name
+    description: node_moduels # optional, Description to publish to AWS
+    compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
+      - nodejs16.x
+
+# 패키지
+package:
+  patterns:
+    - '!.gitmodules'
+    - '!.git/**'
+    - '!.idea/**'
+    - '!package-lock.json'
+    - '!package.json'
